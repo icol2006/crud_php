@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Ajax PHP CRUD System">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Planilla</title>
+	<title>Editar</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body style="font-family:roboto,sans-serif;">
