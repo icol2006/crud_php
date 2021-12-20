@@ -11,7 +11,7 @@
     <script src="js/utilidades.js"></script>
 </head>
 <body>
-<div class="container">
+<div>
 <h4 style='margin-top:20px'>Listado de registros</h4><br>
 <a href='add.php' class='edit btn btn-sm btn-primary' title='edit'>Agregar nuevo registro</a>
 <br><br>
