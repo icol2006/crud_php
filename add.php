@@ -34,41 +34,50 @@ include 'config.php';
 				</div>
 				<div class="form-group">
 					<label>Dia</label>
-					<input type="number" id="dia" name="dia"   class='form-control' required>
+					<input type="number" id="dia" name="dia"   class='form-control'>
 				</div>
 				<div class="form-group">
 					<label>Hora</label>
-					<input type="number" id="hora" name="hora"   class='form-control' required>
+					<input type="number" id="hora" name="hora"   class='form-control'>
 				</div>
 				<div class="form-group">
 					<label>Hora extra doble</label>
-					<input type="number" id="hora_doble" name="hora_doble"  class='form-control' required>
+					<input type="number" id="hora_doble" name="hora_doble"  class='form-control'>
 				</div>
 			</div>
 				
 			<div class="col-md-6">		
 				<div class="form-group">
-					<label>Tutoreo</label>
-					<input type="text" id="tutoreo" name="tutoreo"  class='form-control' required>
+					<label >Tutoreo</label>
+					<input type="text" id="tutoreo" name="tutoreo"  class='form-control'>
+				</div>
+				
+				<div class="form-group">
+					<select class="form-select" name="tutoreo1x2x" id="tutoreo1x2x" aria-label="Default select example">
+						<option selected value="0">Opciones tutoreo</option>
+						<option value="1">1x</option>
+						<option value="2">2x</option>
+
+					</select>
 				</div>
 				<div class="form-group">
 					<label>Raleo</label>
-					<input type="number" id="raleo" name="raleo"  class='form-control' required>
+					<input type="number" id="raleo" name="raleo"  class='form-control'>
 				</div>
 				<div class="form-group">
 					<label>Bajar Planta</label>
-					<input type="number" id="bajar_planta" name="bajar_planta"  class='form-control' required>
+					<input type="number" id="bajar_planta" name="bajar_planta"  class='form-control'>
 				</div>
 				<div class="form-group">
 					<label>Deshoje</label>
-					<input type="number" id="deshoje" name="deshoje"  class='form-control' required>
+					<input type="number" id="deshoje" name="deshoje"  class='form-control'>
 				</div>
 				<div class="form-group">
 					<label>Cosecha</label>
-					<input type="number" id="cosecha" name="cosecha"  class='form-control' required>
+					<input type="number" id="cosecha" name="cosecha"  class='form-control'>
 				</div>
 				<div class="form-group">
-					<label>Inversion</label>
+					<label>Invernadero</label>
 					<input type="number" id="inv" name="inv"  class='form-control' required>
 				</div>
 			</div>
@@ -76,28 +85,29 @@ include 'config.php';
 	
 				<center>        
 				<input type="submit"  name="add" value="Actualizar" class='btn update btn-success '>
-				<a href="index.php#first" class='btn btn-danger'>Cancelar</a>
+				<a href="index.php" class='btn btn-danger'>Cancelar</a>
 				</center>
 			</form>
             <?php
 if(isset($_POST['add']))
 {
   include 'config.php';
-  $id_pago=$_POST['id_pago'];
-  $id_empleado=$_POST['id_empleado'];
-  $fecha=$_POST['fecha'];
-  $dia=$_POST['dia'];
-  $hora=$_POST['hora'];
-  $hora_doble=$_POST['hora_doble'];
-  $tutoreo=$_POST['tutoreo'];
-  $raleo=$_POST['raleo'];
-  $bajar_planta=$_POST['bajar_planta'];
-  $deshoje=$_POST['deshoje'];
-  $cosecha=$_POST['cosecha'];
-  $inv=$_POST['inv']; 
+
+  $id_empleado=($_POST['id_empleado']=='')?'NULL':$_POST['id_empleado'];
+  $fecha=($_POST['fecha']=='')?'NULL':$_POST['fecha'];
+  $dia=($_POST['dia']=='')?'NULL':$_POST['dia'];
+  $hora=($_POST['hora']=='')?'NULL':$_POST['hora'];
+  $hora_doble=($_POST['hora_doble']=='')?'NULL':$_POST['hora_doble'];
+  $tutoreo=($_POST['tutoreo']=='')?'NULL':$_POST['tutoreo'];
+  $tutoreo1x2x=($_POST['tutoreo1x2x']=='')?'NULL':$_POST['tutoreo1x2x'];
+  $raleo=($_POST['raleo']=='')?'NULL':$_POST['raleo'];
+  $bajar_planta=($_POST['bajar_planta']=='')?'NULL':$_POST['bajar_planta'];
+  $deshoje=($_POST['deshoje']=='')?'NULL':$_POST['deshoje'];
+  $cosecha=($_POST['cosecha']=='')?'NULL':$_POST['cosecha'];
+  $inv=($_POST['inv']=='')?'NULL':$_POST['inv']; 
  
 
-  $sql="INSERT INTO pagos (id_empleado, fecha, dia, hora, hora_doble, tutoreo, raleo, bajar_planta, deshoje, cosecha, inv) VALUES ('$id_empleado','$fecha','$dia','$hora','$hora_doble','$tutoreo','$raleo','$bajar_planta','$deshoje','$cosecha','$inv')";
+  $sql="INSERT INTO pagos (id_empleado, fecha, dia, hora, hora_doble, tutoreo, tutoreo1x2x, raleo, bajar_planta, deshoje, cosecha, inv) VALUES ('$id_empleado','$fecha',$dia,$hora,$hora_doble,$tutoreo,$tutoreo1x2x,$raleo,$bajar_planta,$deshoje,$cosecha,$inv)";
   if($conn->query($sql) === false)
   { 
     trigger_error('Error en el SQL Command: ' . $sql . ' Error: ' . $conn->error, E_USER_ERROR);

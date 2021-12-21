@@ -31,7 +31,7 @@ $row=mysqli_fetch_array($a,MYSQLI_ASSOC);
 				</div>
 				<div class="form-group">
 					<label>Id Empleado</label>
-					<input type="number" id="id_empleado" name="id_empleado" value="<?php echo $row['id_pago'] ?>"   class='form-control' required>
+					<input type="number" id="id_empleado" name="id_empleado" value="<?php echo $row['id_empleado'] ?>"   class='form-control' required>
 				</div>
 				<div class="form-group">
 					<label>Fecha</label>
@@ -39,41 +39,45 @@ $row=mysqli_fetch_array($a,MYSQLI_ASSOC);
 				</div>
 				<div class="form-group">
 					<label>Dia</label>
-					<input type="number" id="dia" name="dia" value="<?php echo $row['dia'] ?>"  class='form-control' required>
+					<input type="number" id="dia" name="dia" value="<?php echo $row['dia'] ?>"  class='form-control'>
 				</div>
 				<div class="form-group">
 					<label>Hora</label>
-					<input type="number" id="hora" name="hora" value="<?php echo $row['hora'] ?>"  class='form-control' required>
+					<input type="number" id="hora" name="hora" value="<?php echo $row['hora'] ?>"  class='form-control'>
 				</div>
 				<div class="form-group">
 					<label>Hora extra doble</label>
-					<input type="number" id="hora_doble" name="hora_doble" value="<?php echo $row['hora_doble'] ?>" class='form-control' required>
+					<input type="number" id="hora_doble" name="hora_doble" value="<?php echo $row['hora_doble'] ?>" class='form-control'>
 				</div>
 			</div>
 				
 			<div class="col-md-6">		
 				<div class="form-group">
 					<label>Tutoreo</label>
-					<input type="number" id="tutoreo" name="tutoreo" value="<?php echo $row['tutoreo'] ?>" class='form-control' required>
+					<input type="number" id="tutoreo" name="tutoreo" value="<?php echo $row['tutoreo'] ?>" class='form-control'>
+				</div>
+				<div class="form-group">
+					<label>Tutoreo</label>
+					<input type="number" id="tutoreo1x2x" name="tutoreo1x2x" value="<?php echo $row['tutoreo1x2x'] ?>" class='form-control'>
 				</div>
 				<div class="form-group">
 					<label>Raleo</label>
-					<input type="number" id="raleo" name="raleo" value="<?php echo $row['raleo'] ?>" class='form-control' required>
+					<input type="number" id="raleo" name="raleo" value="<?php echo $row['raleo'] ?>" class='form-control'>
 				</div>
 				<div class="form-group">
 					<label>Bajar Planta</label>
-					<input type="number" id="bajar_planta" name="bajar_planta" value="<?php echo $row['bajar_planta'] ?>" class='form-control' required>
+					<input type="number" id="bajar_planta" name="bajar_planta" value="<?php echo $row['bajar_planta'] ?>" class='form-control'>
 				</div>
 				<div class="form-group">
 					<label>Deshoje</label>
-					<input type="number" id="deshoje" name="deshoje" value="<?php echo $row['deshoje'] ?>" class='form-control' required>
+					<input type="number" id="deshoje" name="deshoje" value="<?php echo $row['deshoje'] ?>" class='form-control'>
 				</div>
 				<div class="form-group">
 					<label>Cosecha</label>
-					<input type="number" id="cosecha" name="cosecha" value="<?php echo $row['cosecha'] ?>" class='form-control' required>
+					<input type="number" id="cosecha" name="cosecha" value="<?php echo $row['cosecha'] ?>" class='form-control'>
 				</div>
 				<div class="form-group">
-					<label>Inversion</label>
+					<label>Invernadero</label>
 					<input type="number" id="inv" name="inv" value="<?php echo $row['inv'] ?>" class='form-control' required>
 				</div>
 			</div>
@@ -89,33 +93,32 @@ if(isset($_POST['update']))
 {
   include 'config.php';
   $id_pago=$_POST['id_pago'];
-  $id_empleado=$_POST['id_empleado'];
-  $fecha=$_POST['fecha'];
-  $dia=$_POST['dia'];
-  $hora=$_POST['hora'];
-  $hora_doble=$_POST['hora_doble'];
-  $tutoreo=$_POST['tutoreo'];
-  $raleo=$_POST['raleo'];
-  $bajar_planta=$_POST['bajar_planta'];
-  $deshoje=$_POST['deshoje'];
-  $cosecha=$_POST['cosecha'];
-  $inv=$_POST['inv']; 
- 
+  $id_empleado=($_POST['id_empleado']=='')?'NULL':$_POST['id_empleado'];
+  $fecha=($_POST['fecha']=='')?'NULL':$_POST['fecha'];
+  $dia=($_POST['dia']=='')?'NULL':$_POST['dia'];
+  $hora=($_POST['hora']=='')?'NULL':$_POST['hora'];
+  $hora_doble=($_POST['hora_doble']=='')?'NULL':$_POST['hora_doble'];
+  $tutoreo=($_POST['tutoreo']=='')?'NULL':$_POST['tutoreo'];
+  $tutoreo1x2x=($_POST['tutoreo1x2x']=='')?'NULL':$_POST['tutoreo1x2x'];
+  $raleo=($_POST['raleo']=='')?'NULL':$_POST['raleo'];
+  $bajar_planta=($_POST['bajar_planta']=='')?'NULL':$_POST['bajar_planta'];
+  $deshoje=($_POST['deshoje']=='')?'NULL':$_POST['deshoje'];
+  $cosecha=($_POST['cosecha']=='')?'NULL':$_POST['cosecha'];
+  $inv=($_POST['inv']=='')?'NULL':$_POST['inv']; 
 
   $sql="UPDATE pagos SET id_empleado='$id_empleado',
-  fecha='$fecha',dia='$dia',hora='$hora',hora_doble='$hora_doble',tutoreo='$tutoreo',
-  raleo='$raleo',bajar_planta='$bajar_planta',deshoje='$deshoje',cosecha='$cosecha',inv='$inv' WHERE id_pago='$_GET[id_pago]'";
+  fecha='$fecha',dia=$dia,hora=$hora,hora_doble=$hora_doble,tutoreo=$tutoreo, tutoreo1x2x=$tutoreo1x2x,
+  raleo=$raleo,bajar_planta=$bajar_planta,deshoje=$deshoje,cosecha=$cosecha,inv=$inv WHERE id_pago='$_GET[id_pago]'";
   if($conn->query($sql) === false)
   { 
-    trigger_error('Errro en el SQL Command: ' . $sql . ' Error: ' . $conn->error, E_USER_ERROR);
+    trigger_error('Error en el SQL Command: ' . $sql . ' Error: ' . $conn->error, E_USER_ERROR);
   }  
   else 
-  { // Jika berhasil alihkan ke halaman tampil.php
+  { 
     echo "<script>alert('Actulizacion exitosa!')</script>";
   	echo "<meta http-equiv=refresh content=\"0; url=index.php\">";
   }
 }
-
 ?>   
 			<br>
 	</div>

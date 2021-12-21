@@ -32,7 +32,6 @@
         <tr>
           <th scope="col">ID Pago</th>
           <th scope="col">ID Empleado</th>
-          <th scope="col">Nombre</th>
           <th scope="col">FECHA</th>
 
           <th scope="col" >Día</th>
@@ -77,20 +76,19 @@
 
             <td><?php echo $row["id_pago"]; ?></td>
             <td><?php echo $row["id_empleado"]; ?></td>
-            <td> Marco Arellano </td>
             <td><?php echo $row["fecha"]; ?></td>
         
             <td><?php echo $row["dia"]; ?></td>
-            <td id="content2" style="display: none" class="pesos">$3.33</td>
+            <td id="content2" style="display: none" class="pesos"><?php echo $row["dia"]* (1100/6); ?></td>
 
             <td><?php echo $row["hora"]; ?></td>
-            <td id="content4" style="display: none;"  class="pesos">$4.44</td>
+            <td id="content4" style="display: none;"  class="pesos"><?php echo $row["hora"]*25; ?></td>
         
             <td><?php echo $row["hora_doble"]; ?></td>
-            <td id="content6" style="display: none;"  class="pesos"> $5.55</td>
+            <td id="content6" style="display: none;"  class="pesos"><?php echo $row["hora_doble"]*50; ?></td>
 
             <td><?php echo $row["tutoreo"]; ?></td>
-            <td> 1x </td>
+            <td></td>
             <td id="content8" style="display: none;"  class="pesos"> $6.66</td>
 
             <td><?php echo $row["raleo"]; ?></td>
