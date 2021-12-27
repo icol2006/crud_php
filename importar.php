@@ -69,7 +69,6 @@ include 'config.php';
         <h5 class="modal-title" id="exampleModalLabel">Excel del biometrico</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <br><br>
       <!-- Boton -->
       <div class="modal-body">
         <form action="importar.php" method="post" enctype="multipart/form-data">
@@ -91,14 +90,17 @@ include 'config.php';
 				</div>
           <br>
           <div class="form-group">
+          <label>Estado</label>
 					<select class="form-select" name="estado" id="estado">
-						<option selected value="0">Estado</option>
+						<option selected value="0">Seleccione el estado</option>
 						<option value="1">Activo</option>
 						<option value="2">Desactivo</option>
 					</select>
 				</div>
          <div class="form-group">
-					<label>Archivo</label>
+					<label>Archivo nombre</label>
+          <input type="text" id="archivo_nombre" name="archivo_nombre"   class='form-control' required>
+          <br>
           <input class="form-control"  type="file" name="fileToUpload" id="fileToUpload">
          </div>
           <br>
@@ -116,15 +118,18 @@ include 'config.php';
 <?php
 if (isset($_POST["submit"])) {
   $target_dir = "uploads/";
-  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-  $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
+  $archivo_nombre=($_POST['archivo_nombre']=='')?'Sin especificar':$_POST['archivo_nombre'];
+  //$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+  $target_file = $target_dir . $archivo_nombre;
+  $fileType = strtolower(pathinfo( $target_dir . basename($_FILES["fileToUpload"]["name"]), PATHINFO_EXTENSION));
+  echo $fileType;
 
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     echo "El archivo " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " ha sido subido.";
 
     $id_empleado=($_POST['id_empleado']=='')?'NULL':$_POST['id_empleado'];
-    $ubicacion=$target_dir . htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
+    $id_empleado=($_POST['id_empleado']=='')?'NULL':$_POST['id_empleado'];
+    $ubicacion= $target_file . $fileType;
     $fecha=($_POST['fecha']=='')?'NULL':$_POST['fecha'];
     $hora=($_POST['hora']=='')?'NULL':$_POST['hora'];
     $estado=($_POST['estado']=='')?'':$_POST['estado'];
