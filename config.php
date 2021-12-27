@@ -3,7 +3,7 @@
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
-$dbname = 'mercury2';
+$dbname = 'mercury';
 
 $conn = new mysqli($dbhost,$dbuser,$dbpass,$dbname);
 if($conn->connect_error)

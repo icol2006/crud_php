@@ -57,7 +57,6 @@ include 'config.php';
 						<option selected value="0">Opciones tutoreo</option>
 						<option value="1">1x</option>
 						<option value="2">2x</option>
-
 					</select>
 				</div>
 				<div class="form-group">
